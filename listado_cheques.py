@@ -20,3 +20,12 @@ if len(argumentos) >= 5:
             estado= argumentos[5]
             rangoFecha= argumentos[6].split(":")
 
+        else:
+            rangoFecha= argumentos[5].split(":")
+            estado= argumentos[6]
+
+else:
+    print("ERROR. Cantidad incorrec")
+
+archivo= open(nombreArchivo, 'r', encoding='latin1')
+archivoCSV= csv.reader(archivo)
