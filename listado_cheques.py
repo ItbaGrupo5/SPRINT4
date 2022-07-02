@@ -42,3 +42,16 @@ for linea in archivoCSV:
                         raise Exception("Numero de cheque duplicado!")
                     else:
                         nroCheque.append(linea[0])
+            else:
+                if int(linea[-5]) >= datetime.timestamp(datetime.strptime(rangoFecha[0], "%d-%m-%Y")) and int(linea[-4]) <= datetime.timestamp(datetime.strptime(rangoFecha[1], "%d-%m-%Y")):
+                    resultado.append(linea)
+                    if linea[0] in nroCheque:
+                        raise Exception("Numero de cheque duplicado!")
+                    else:
+                        nroCheque.append(linea[0])
+        else:
+            resultado.append(linea)
+            if linea[0] in nroCheque:
+                raise Exception("Numero de cheque duplicado!")
+            else:
+                nroCheque.append(linea[0])
