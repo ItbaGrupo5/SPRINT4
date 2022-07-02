@@ -29,3 +29,16 @@ else:
 
 archivo= open(nombreArchivo, 'r', encoding='latin1')
 archivoCSV= csv.reader(archivo)
+
+resultado=[]
+nroCheque=[]
+for linea in archivoCSV:
+    if linea[-3] == DNI and linea[-2] == tipoCheque:
+        if len(argumentos)==6:
+            if checkEstado(argumentos[5]):
+                if linea[-1] == estado:
+                    resultado.append(linea)
+                    if linea[0] in nroCheque:
+                        raise Exception("Numero de cheque duplicado!")
+                    else:
+                        nroCheque.append(linea[0])
