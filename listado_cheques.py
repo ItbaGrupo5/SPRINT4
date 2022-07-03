@@ -25,7 +25,7 @@ if len(argumentos) >= 5:
             estado= argumentos[6]
 
 else:
-    print("ERROR. Cantidad incorrec")
+    print("ERROR. Cantidad incorrecta de argumentos. Por favor ingrese en el siguiente orden NombreArchivo, DNI, Salida, TipoCheque")
 
 archivo= open(nombreArchivo, 'r', encoding='latin1')
 archivoCSV= csv.reader(archivo)
@@ -65,7 +65,12 @@ for linea in archivoCSV:
                     nroCheque.append(linea[0])
 
 if salida == "PANTALLA":
-    print(resultado)
+    print() 
+    print ("{:<8} {:<13} {:<13} {:<15} {:<20} {:<8} {:<10} {:<15} {:<10} {:<10} {:<10}".format("NroCheque","CodigoBanco","CodigoScurusal","NumeroCuentaOrigen","NumeroCuentaDestino","Valor","FechaOrigen","FechaPago","DNI","Tipo","Estado"))
+    for v in resultado:
+        NroCheque, CodigoBanco, CodigoScurusal, NumeroCuentaOrigen, NumeroCuentaDestino, Valor, FechaOrigen, FechaPago, DNI, Tipo, Estado = v
+        print ("{:<14} {:<13} {:<13} {:<18} {:<16} {:<8} {:<11} {:12} {:<13} {:<10} {:<10}".format(NroCheque, CodigoBanco, CodigoScurusal, NumeroCuentaOrigen, NumeroCuentaDestino, Valor, FechaOrigen, FechaPago, DNI, Tipo, Estado))
+    print()
     archivo.close()
 else:
     dt = datetime.now()
