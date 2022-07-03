@@ -25,7 +25,7 @@ if len(argumentos) >= 5:
             estado= argumentos[6]
 
 else:
-    print("ERROR. Cantidad incorrec")
+    print("ERROR. Cantidad incorrecta de argumentos. Por favor ingrese en el siguiente orden NombreArchivo, DNI, Salida, TipoCheque")
 
 archivo= open(nombreArchivo, 'r', encoding='latin1')
 archivoCSV= csv.reader(archivo)
