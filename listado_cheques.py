@@ -56,7 +56,7 @@ for linea in archivoCSV:
             else:
                 nroCheque.append(linea[0])
         
-          if len(argumentos) == 7:
+        if len(argumentos) == 7:
             if linea[-1] == estado and (linea[-5] >= datetime.timestamp(datetime.strptime(rangoFecha[0], "%d-%m-%Y")) and int(linea[-4]) <= datetime.timestamp(datetime.strptime(rangoFecha[1], "%d-%m-%Y"))):
                 resultado.append(linea)
                 if linea[0] in nroCheque:
@@ -66,3 +66,25 @@ for linea in archivoCSV:
 
 if salida == "PANTALLA":
     print(resultado)
+    archivo.close()
+else:
+    dt = datetime.now()
+    archivoSalida=open(f'{DNI}_{int(round(datetime.timestamp(dt)))}', 'w', newline='')
+    archivoSalida.write("FechaOrigen,FechaPago,Valor,NroCuenta \n")
+    
+    guardado=[]
+    fila=[]
+    for i in range(len(resultado)):
+        guardado.append(resultado[i][-5])
+        guardado.append(resultado[i][-4])
+        guardado.append(resultado[i][-6])
+        guardado.append(resultado[i][3])
+        fila.append(guardado)
+
+        guardado=[]
+    with archivoSalida:     
+        write = csv.writer(archivoSalida)
+        write.writerows(fila)
+ 
+    archivoSalida.close()
+    archivo.close()
